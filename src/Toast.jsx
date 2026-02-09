@@ -22,6 +22,10 @@ export const Toast = ({
 }) => {
   useEffect(() => {
     if (!open) return
+    const shouldAutoClose =
+      typeof duration === 'number' && Number.isFinite(duration) && duration > 0
+
+    if (!shouldAutoClose) return
 
     const timer = setTimeout(() => {
       setContent(null)
@@ -118,4 +122,3 @@ export const Toast = ({
     document.body
   )
 }
-

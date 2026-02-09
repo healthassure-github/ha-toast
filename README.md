@@ -123,6 +123,23 @@ export default function App() {
 }
 ```
 
+## Keep a toast open (no auto-close)
+
+Pass `duration={null}` to disable the timer:
+
+```jsx
+showToast(
+  { type: 'info', title: 'Working', subtitle: 'This will stay open.' },
+  { duration: null }
+)
+```
+
+Or, if you manage state manually:
+
+```jsx
+<Toast duration={null} ... />
+```
+
 ## Notes
 
 - Uses Tailwind utility classes for styling; ensure Tailwind is configured in the consuming app.
@@ -138,4 +155,3 @@ npm run build
 ```
 
 Commit the generated `dist/` folder before publishing or installing from GitHub.
-

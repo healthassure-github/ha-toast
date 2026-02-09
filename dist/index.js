@@ -660,6 +660,8 @@ var Toast = ({
 }) => {
   useEffect2(() => {
     if (!open) return;
+    const shouldAutoClose = typeof duration === "number" && Number.isFinite(duration) && duration > 0;
+    if (!shouldAutoClose) return;
     const timer = setTimeout(() => {
       setContent(null);
       setOpen(false);
@@ -758,7 +760,7 @@ var useToastState = (options = {}) => {
   const showToast = useCallback(
     (nextContent, overrides = {}) => {
       if (!nextContent) return;
-      const nextDuration = typeof overrides.duration === "number" ? overrides.duration : defaultDuration;
+      const nextDuration = Object.prototype.hasOwnProperty.call(overrides, "duration") ? overrides.duration : defaultDuration;
       setDuration(nextDuration);
       setContent(nextContent);
       setOpen(true);

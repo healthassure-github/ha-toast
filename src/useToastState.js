@@ -12,7 +12,7 @@ export const useToastState = (options = {}) => {
       if (!nextContent) return
 
       const nextDuration =
-        typeof overrides.duration === 'number'
+        Object.prototype.hasOwnProperty.call(overrides, 'duration')
           ? overrides.duration
           : defaultDuration
 
