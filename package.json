@@ -1,25 +1,35 @@
 {
   "name": "ha-toast",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Toast component for HA projects",
   "type": "module",
-  "main": "./src/index.js",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
   "exports": {
-    ".": "./src/index.js"
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
   },
   "files": [
-    "src",
-    "README.md"
+    "dist",
+    "README.md",
+    "package.json"
   ],
   "sideEffects": false,
   "license": "UNLICENSED",
+  "scripts": {
+    "build": "tsup"
+  },
   "peerDependencies": {
     "react": ">=18",
     "react-dom": ">=18"
   },
-  "dependencies": {
+  "devDependencies": {
     "@headlessui/react": "^2.2.4",
     "@heroicons/react": "^2.2.0",
-    "clsx": "^2.1.1"
+    "clsx": "^2.1.1",
+    "typescript": "^5.5.4",
+    "tsup": "^8.0.2"
   }
 }

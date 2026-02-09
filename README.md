@@ -127,3 +127,15 @@ export default function App() {
 
 - Uses Tailwind utility classes for styling; ensure Tailwind is configured in the consuming app.
 - The toast renders into `document.body` via a React portal.
+
+## Build
+
+This package bundles its UI dependencies into `dist/` and keeps `react`/`react-dom` as peer dependencies.
+
+```bash
+npm install
+npm run build
+```
+
+Commit the generated `dist/` folder before publishing or installing from GitHub.
+
