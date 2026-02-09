@@ -51,6 +51,68 @@ export default function App() {
 }
 ```
 
+## Provider-based usage (no prop drilling)
+
+```jsx
+import { ToastProvider, ToastViewport, useToast } from 'ha-toast'
+
+function App() {
+  return (
+    <ToastProvider duration={4000}>
+      <ToastViewport />
+      <Page />
+    </ToastProvider>
+  )
+}
+
+function Page() {
+  const { showToast } = useToast()
+
+  const onSave = () => {
+    showToast({
+      type: 'success',
+      title: 'Saved',
+      subtitle: 'Your changes were saved.'
+    })
+  }
+
+  return <button onClick={onSave}>Save</button>
+}
+```
+
+## Simpler usage with `useToastState`
+
+```jsx
+import { Toast, useToastState } from 'ha-toast'
+
+export default function App() {
+  const { toastProps, showToast } = useToastState({ duration: 4000 })
+
+  const showSuccess = () => {
+    showToast({
+      type: 'success',
+      title: 'Saved',
+      subtitle: 'Your changes were saved.'
+    })
+  }
+
+  const showErrorLonger = () => {
+    showToast(
+      { type: 'error', title: 'Oops', subtitle: 'Try again later.' },
+      { duration: 7000 }
+    )
+  }
+
+  return (
+    <>
+      <button onClick={showSuccess}>Show toast</button>
+      <button onClick={showErrorLonger}>Show error</button>
+      <Toast {...toastProps} />
+    </>
+  )
+}
+```
+
 ## Content shape
 
 ```js
